@@ -1,17 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 100
-typedef struct {
-    int value;
-    int count;
-}Element;
+
+#define MAX_VALUE 1000
+
 
 int input(int *arr,int n);
-int findIndex(Element stats[], int size,int value);
-void finDuplicates(int arr[], int n) ;
-
-
+void countOccurrences(int arr[], int n);
 
 int main() {
 
@@ -35,7 +30,7 @@ int main() {
     }
 
     input(arr,n);
-    finDuplicates(arr,n);
+    countOccurrences(arr,n);
 
     free(arr);
     return 0;
@@ -49,40 +44,20 @@ int input(int *arr,int n)
     }
 }
 
-int findIndex(Element stats[], int size,int value) {
-    for (int i = 0; i < size; i++) {
-        if (stats[i].value == value) {
-            return i;
-        }
-
-    }
-    return -1;
-}
-void finDuplicates(int arr[], int n) {
-    Element stats[MAX];
-    Element statsMax[MAX];
-    int countMax = 1;
-    int size = 0;
+void countOccurrences(int arr[], int n) {
+    int frequency[MAX_VALUE] = {0};
+    int maxValue = arr[0];
+    int minValue = arr[0];
     for (int i = 0; i < n; i++) {
-        int index = findIndex(stats, size,arr[i]);
-        if (index == -1) {
-            stats[size].value = arr[i];
-            stats[size].count = 1;
-            size++;
-
-        }else {
-            stats[index].count++;
-            if (countMax<stats[index].count) {
-                countMax=stats[index].count;
-            }
+        frequency[arr[i]]++;
+        if (maxValue < arr[i]) maxValue = arr[i];
+        if (minValue > arr[i]) minValue = arr[i];
+    }
+    for (int i = minValue; i <= maxValue; i++) {
+        if (frequency[i] > 0) {
+            printf("Phan tu %d xuat hien %d lan\n", i, frequency[i]);
         }
     }
-    for (int i = 0; i < size; i++)
-    {
-        printf("Gia tri %d xuat hien %d lan\n", stats[i].value, stats[i].count);
-    }
-
-
 }
 
 

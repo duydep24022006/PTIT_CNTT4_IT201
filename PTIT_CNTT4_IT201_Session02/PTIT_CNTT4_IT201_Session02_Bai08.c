@@ -8,8 +8,6 @@ int main()
 {
     int n;
     int *arr;
-
-
     do
     {
         scanf("%d",&n);
@@ -19,7 +17,6 @@ int main()
         };
 
     }while (n<=0||n>100);
-
     arr = (int *)malloc(n * sizeof(int));
 
     if (arr == NULL) {
@@ -29,7 +26,6 @@ int main()
     input(arr,n);
 
     output(arr,n);
-
     free(arr);
     return 0;
 }
@@ -53,18 +49,13 @@ int output(int *arr,int n)
         printf("Không đủ bộ nhớ!\n");
         return 1;
     }
-    for(int i=n-1;i>0;--i)
+    for(int i=n-1;i>=0;--i)
     {
-        if(i==n-1)
-        {
-            arr2[count]=max;
-            count++;
-        }else if (max<arr[i])
+        if (i==n-1||max<arr[i])
         {
             max=arr[i];
             arr2[count]=max;
             count++;
-
         }
     }
     for(int i=count-1;i>=0;i--)

@@ -1,22 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 100
+#define MAX_VALUE 1000
+
 typedef struct {
     int value;
     int count;
 }Element;
 
 int input(int *arr,int n);
-int findIndex(Element stats[], int size,int value);
-void finDuplicates(int arr[], int n) ;
-
-
+void countOccurrences(int arr[], int n);
 
 int main() {
 
-    int n;
-    int *arr;
+    int n, *arr;
     do
     {
         scanf("%d",&n);
@@ -24,9 +21,7 @@ int main() {
         {
             printf("khong hop le\n");
         };
-
     }while (n<=0||n>100);
-
     arr = (int *)malloc(n * sizeof(int));
 
     if (arr == NULL) {
@@ -34,9 +29,7 @@ int main() {
         return 1;
     }
     input(arr,n);
-
-    finDuplicates(arr,n);
-
+    countOccurrences(arr,n);
     free(arr);
     return 0;
 }
@@ -49,38 +42,19 @@ int input(int *arr,int n)
     }
 }
 
-int findIndex(Element stats[], int size,int value) {
-    for (int i = 0; i < size; i++) {
-        if (stats[i].value == value) {
-            return i;
-        }
+void countOccurrences(int arr[], int n) {
+    Element frequency[MAX_VALUE]= {0};
 
-    }
-    return -1;
-}
-void finDuplicates(int arr[], int n) {
-    Element stats[MAX];
-    Element statsMax[MAX];
-    int countMax = 1;
-    int size = 0;
+    int countMax=0;
     for (int i = 0; i < n; i++) {
-        int index = findIndex(stats, size,arr[i]);
-        if (index == -1) {
-            stats[size].value = arr[i];
-            stats[size].count = 1;
-            size++;
-
-        }else {
-            stats[index].count++;
-            if (countMax<stats[index].count) {
-                statsMax[0].value = stats[index].value;
-                statsMax[0].count = stats[index].count;
-                countMax=stats[index].count;
-            }
+        if ( frequency[arr[i]].count == 0) {
+            frequency[arr[i]].value=arr[i];
         }
-    }
-    printf("Gia tri %d xuat hien %d lan\n", statsMax[0].value, statsMax[0].count);
 
+        frequency[arr[i]].count++;
+        if (frequency[arr[i]].count>countMax) countMax = frequency[arr[i]].value;
+    }
+    printf("Phan tu %d xuat hien %d lan\n", frequency[countMax].value, frequency[countMax].count);
 }
 
 
