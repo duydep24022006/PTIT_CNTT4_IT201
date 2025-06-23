@@ -11,7 +11,10 @@ int main(){
     else if(n==0)
     {
         printf("so luong phan tu phai lon hon 0\n");
-    }else
+    }else if (n>1000){
+        printf("so luong phan tu cua ban khong dc qua 1000 phan tu\n");
+    }
+    else
     {
         arr=(int *)malloc(n*sizeof(int));
         for(int i=0;i<n;i++) scanf("%d",&arr[i]);

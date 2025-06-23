@@ -7,7 +7,7 @@ int main(){
     int *arr,n,n2,m;
     printf("n = ");
     scanf("%d",&n);
-    if (n<0)
+    if (n<0||n>1000)
     {
         printf("so luong phan tu khong hop le \n");
         return 0;
