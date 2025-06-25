@@ -8,13 +8,13 @@ int main(){
     printf("cols = ");
     scanf("%d",&cols);
 
-    if(rows<0 && rows==0 || cols<0 && cols==0){
+    if((rows<=0 || rows>1000) && (cols<=0 || cols>1000)){
         printf("so cot va hang khong hop le\n");
     }
-    else if(rows<0 && rows==0)
+    else if(rows<=0)
     {
         printf("so hang khong hop le\n");
-    }else if(cols<0 && cols==0)
+    }else if(cols<=0)
     {
         printf("so cot khong hop le\n");
     }
