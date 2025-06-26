@@ -24,7 +24,6 @@ int binarySearch(int arr[], int left, int right, int x) {
     if (left > right)
         return -1;
     int mid = left + (right - left) / 2;
-
     if (arr[mid] == x)
         return mid;
     else if (arr[mid] > x)
