@@ -11,7 +11,7 @@ typedef struct
 int main()
 {
     int k;
-    user *list[5];
+    user *list[5];                  
     for(int i=0;i<5;i++)
     {
         list[i] = malloc(sizeof(user));

@@ -1,66 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
+#include <string.h>  // để dùng strcspn
 
 typedef struct {
     int id;
     char name[50];
     int age;
-} user;
-
-
-void toLowerStr(char *dest, const char *src) {
-    for (int i = 0; src[i]; i++) {
-        dest[i] = tolower((unsigned char)src[i]);
-    }
-    dest[strlen(src)] = '\0';
-}
+} sinhVien;
 
 int main() {
-    int flag = -1;
-    char str[50];
-    user *list[5];
+    int n;
+    printf("Enter number of students: ");
+    scanf("%d", &n);
 
+    if (n <= 0) {
+        printf("Invalid input\n");
+        return 0;
+    }
 
-    for (int i = 0; i < 5; i++) {
-        list[i] = malloc(sizeof(user));
+    sinhVien sinhViens[n];
+    getchar();
 
-        printf("Sinh vien thu %d\n", i + 1);
-        list[i]->id = i;
+    for (int i = 0; i < n; i++) {
+        sinhViens[i].id = i + 1;
+        printf("Name of student %d: ", sinhViens[i].id);
+        fgets(sinhViens[i].name, sizeof(sinhViens[i].name), stdin);
+        sinhViens[i].name[strcspn(sinhViens[i].name, "\n")] = 0;
 
-        printf("Moi ban nhap ten: ");
-        fgets(list[i]->name, sizeof(list[i]->name), stdin);
-        list[i]->name[strcspn(list[i]->name, "\n")] = '\0';
-
-        printf("Moi ban nhap tuoi: ");
-        scanf("%d", &list[i]->age);
+        printf("Age of student %d: ", sinhViens[i].id);
+        scanf("%d", &sinhViens[i].age);
         getchar();
     }
 
-    printf("\nMoi ban nhap ten cua sinh vien can tim (co the nhap mot phan): ");
-    fgets(str, sizeof(str), stdin);
-    str[strcspn(str, "\n")] = '\0';
-
-    char target[50], temp[50];
-    toLowerStr(target, str);
-
-    for (int i = 0; i < 5; i++) {
-        toLowerStr(temp, list[i]->name);
-        if (strstr(temp, target) != NULL) {
-            flag = 1;
-            printf("{id=%d, name=%s, age=%d}\n", list[i]->id, list[i]->name, list[i]->age);
+    printf("\nList of students:\n");
+    for (int i = 0; i < n; i++) {
+        printf("ID: %d, Name: %s, Age: %d\n", sinhViens[i].id, sinhViens[i].name, sinhViens[i].age);
+    }
+    int start = 0, end = n - 1;
+    int key;
+    printf("Please enter the student to search for(id): ");
+    scanf ("%d", &key);
+    while (start <= end) {
+        int mid = (start + end) /2;
+        if (sinhViens[mid].id == key) {
+            printf("ID: %d, Name: %s, Age: %d",sinhViens[mid].id,sinhViens[mid].name,sinhViens[mid].age);
+            return 0;
+        } else if (sinhViens[mid].id > key) {
+            end = mid - 1;
+        } else {
+            start = mid + 1;
         }
     }
-
-    if (flag == -1) {
-        printf("Khong tim thay sinh vien nao phu hop.\n");
-    }
-
-
-    for (int i = 0; i < 5; i++) {
-        free(list[i]);
-    }
-
+    printf("No solo: ");
     return 0;
 }

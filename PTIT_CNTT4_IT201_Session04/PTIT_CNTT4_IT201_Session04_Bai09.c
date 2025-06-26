@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int binarySearch(int arr[], int n, int target);
+int binarySearch(int arr[], int left, int right, int x) ;
+
 int main()
 {
     int n,*arr,target,flag;
@@ -12,28 +13,22 @@ int main()
     for(int i=0;i<n;i++) scanf("%d",&arr[i]);
     printf("target = ");
     scanf("%d",&target);
-    flag=binarySearch(arr,n, target);
+    flag=binarySearch(arr, 0, n-1, target);
     if(flag!=-1) printf("phan tu co trong mang");
     else printf("phan tu khong co trong mang");
     free(arr);
     return 0;
 }
 
-int binarySearch(int arr[], int n, int target) {
-    int left = 0, right = n - 1;
+int binarySearch(int arr[], int left, int right, int x) {
+    if (left > right)
+        return -1;
+    int mid = left + (right - left) / 2;
 
-    while (left <= right) {
-
-        int mid = left + (right - left) / 2;
-
-        if (arr[mid] == target)
-            return mid;
-
-        if (arr[mid] < target)
-            left = mid + 1;
-        else
-            right = mid - 1;
-    }
-
-    return -1;
+    if (arr[mid] == x)
+        return mid;
+    else if (arr[mid] > x)
+        return binarySearch(arr, left, mid - 1, x);
+    else
+        return binarySearch(arr, mid + 1, right, x);
 }
