@@ -16,7 +16,7 @@ int main()
 int countWay(int n,int count)
 {
     if (count > n) return 0;
-    if (count ==n) return 1;
+    if (count == n) return 1;
 
     return countWay(n,count+1)+countWay(n,count+2);
 

@@ -16,6 +16,7 @@ int main()
     max = arr[0];
     minAndMax(arr,n-1,&max, &min);
     printf("min = %d,max = %d\n",min,max);
+    free(arr);
     return 0;
 
 }
