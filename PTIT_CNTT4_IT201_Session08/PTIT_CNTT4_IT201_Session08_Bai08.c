@@ -28,9 +28,12 @@ int main()
     scanf("%d",&k);
     firstIndex=linearSearch(arr, n, k);
     secondIndex=binarySearch(arr, n, k);
-    printf("gia tri tra ve cua tim kiem tuyen tinh la:%d",firstIndex);
-    printf("\n");
-    printf("gia tri tra ve cua tim kiem nhi phan la:%d",secondIndex);
+    if (firstIndex!=1&&secondIndex!=1)
+    {
+        printf("gia tri tra ve cua tim kiem tuyen tinh la:%d",firstIndex);
+        printf("\n");
+        printf("gia tri tra ve cua tim kiem nhi phan la:%d",secondIndex);
+    }else printf("khong ton tai phan tu");
 
     free(arr);
     return 0;
