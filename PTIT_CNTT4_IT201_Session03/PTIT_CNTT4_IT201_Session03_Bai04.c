@@ -46,8 +46,9 @@ int main(){
             }
         }
         printf("max = %d \n min = %d",maxValue,minValue);
-        free(arr);
+
         free(data);
+        free(arr);
     }
 
     return 0;
