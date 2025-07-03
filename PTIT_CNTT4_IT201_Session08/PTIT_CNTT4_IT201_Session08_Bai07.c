@@ -21,7 +21,6 @@ int main()
     printf("mang sau khi sap xep: ");
     printfArr(arr, n);
 
-
     free(arr);
     return 0;
 }
@@ -31,31 +30,35 @@ void printfArr(int arr[],int n)
     for(int i=0;i<n;i++) printf("%d ",arr[i]);
 }
 
-void quikSort(int arr[],int left,int right,int flag)
-{
-    if (left>=right) return;
-    int pivot = arr[(left+right)/2];
-    int i=left, j=right;
-    while (i<j)
-    {
-        if (flag==1)
-        {
-            while (arr[i]<pivot) i++;
-            while (arr[j]>pivot) j--;
-        }else
-        {
-            while (arr[i]>pivot) i++;
-            while (arr[j]<pivot) j--;
+void quickSort(int arr[], int left, int right, int flag) {
+    while (left < right) {
+        int pivotIndex = left + rand() % (right - left + 1);
+        int pivot = arr[pivotIndex];
+
+        int i = left, j = right;
+        while (i <= j) {
+            if (flag == 1) {
+                while (arr[i] < pivot) i++;
+                while (arr[j] > pivot) j--;
+            } else {
+                while (arr[i] > pivot) i++;
+                while (arr[j] < pivot) j--;
+            }
+            if (i <= j) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;
+                j--;
+            }
         }
-        if (i<=j)
-        {
-            int temp=arr[i];
-            arr[i]=arr[j];
-            arr[j]=temp;
-            i++;
-            j--;
+
+        if (j - left < right - i) {
+            quickSort(arr, left, j, flag);
+            left = i; // Tail recursion
+        } else {
+            quickSort(arr, i, right, flag);
+            right = j; // Tail recursion
         }
     }
-    quikSort(arr, left, j,flag);
-    quikSort(arr, i, right,flag);
 }
