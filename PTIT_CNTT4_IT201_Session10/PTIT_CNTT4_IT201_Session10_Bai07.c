@@ -1,43 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Node {
+
+typedef struct Node
+{
     int data;
     struct Node* next;
-} Node;
+}Node;
 
-Node* createNode(int value) {
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    if (!newNode) {
-        printf("Khong the cap phat bo nho\n");
+Node* createNode(int value)
+{
+    Node* newNode=(Node*)malloc(sizeof(Node));
+    if(newNode==NULL)
+    {
+        printf("error");
         exit(1);
     }
     newNode->data = value;
-    newNode->next = NULL;
+    newNode->next=NULL;
     return newNode;
 }
 
-void append(Node** headRef, int value) {
-    Node* newNode = createNode(value);
-    if (*headRef == NULL) {
-        *headRef = newNode;
-        return;
-    }
-    Node* cur = *headRef;
-    while (cur->next != NULL)
-        cur = cur->next;
-    cur->next = newNode;
-}
-
-void printList(Node* head) {
-    while (head) {
-        printf("%d", head->data);
-        if (head->next)
-            printf("->");
-        head = head->next;
-    }
-    printf("->NULL\n");
-}
 
 void sortList(Node* head) {
     if (head == NULL) return;
@@ -54,37 +37,49 @@ void sortList(Node* head) {
 }
 
 void freeList(Node* head) {
-    while (head) {
-        Node* tmp = head;
+    Node* temp;
+    while (head != NULL) {
+        temp = head;
         head = head->next;
-        free(tmp);
+        free(temp);
     }
 }
+int main()
+{
+    Node* n1 = createNode(5);
+    Node* n2 = createNode(4);
+    Node* n3 = createNode(3);
+    Node* n4 = createNode(2);
+    Node* n5 = createNode(1);
 
-int main() {
-    Node* head = NULL;
-    int n;
-    printf("Nhap so phan tu: ");
-    if (scanf("%d", &n) != 1 || n <= 0) {
-        printf("So khong hop le\n");
-        return 1;
+    n1->next = n2;
+    n2->next = n3;
+    n3->next = n4;
+    n4->next = n5;
+    Node* head=n1;
+    Node* tail=n5;
+
+    Node* temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d->",temp->data);
+        temp=temp->next;
     }
+    printf("NULL");
 
-    printf("Nhap cac phan tu: ");
-    for (int i = 0; i < n; ++i) {
-        int x;
-        scanf("%d", &x);
-        append(&head, x);
-    }
-
-    printf("Danh sach ban dau: ");
-    printList(head);
+    printf("\n");
 
     sortList(head);
 
-    printf("Danh sach sau khi sap xep tang dan: ");
-    printList(head);
+    temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d->",temp->data);
+        temp=temp->next;
+    }
+    printf("NULL");
 
     freeList(head);
     return 0;
+
 }
