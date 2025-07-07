@@ -22,13 +22,13 @@ Node* createNode(int value)
 }
 
 
-void deleteByValue(Node **headRef, int value) {
-    while (*headRef && (*headRef)->data == value) {
-        Node *tmp = *headRef;
-        *headRef = (*headRef)->next;
+void deleteByValue(Node **head, int value) {
+    while (*head && (*head)->data == value) {
+        Node *tmp = *head;
+        *head = (*head)->next;
         free(tmp);
     }
-    Node *cur = *headRef;
+    Node *cur = *head;
     while (cur && cur->next) {
         if (cur->next->data == value) {
             Node *tmp = cur->next;
