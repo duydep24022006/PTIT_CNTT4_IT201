@@ -27,11 +27,10 @@ void removeAtValue(Node** head,int value)
     {
         Node* nextNode=current->next;
 
-        if(current->data==value)
-        {
+        if(current->data==value)        {
             if (current==*head)
             {
-                *head=current->next;
+                *head=curren->next;
                 if (*head!=NULL) (*head)->prev=NULL;
                 }else
                 {
