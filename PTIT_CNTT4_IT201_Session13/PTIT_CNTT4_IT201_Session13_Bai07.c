@@ -93,7 +93,11 @@ int  isMatchingPair(char* str)
         if (popValue=='['||popValue==']') squareBrackets++;
         if (popValue=='{'||popValue=='}') Braces++;
     }
-    return squareBrackets+parentheses+Braces;
+    if (parentheses%2!=0) return 0;
+    if (squareBrackets%2!=0) return 0;
+    if (Braces%2!=0) return 0;
+
+    return 1;
 
 }
 int main()

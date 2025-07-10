@@ -17,7 +17,7 @@ StackInt *createStackInt(int size) {
 }
 void pushInt(StackInt *s, int data) {
     if (s->top==s->size-1) {
-        printf("Stack day\n");
+        printf("Stack day\n");2vw 7ui8539c6o
         return;
     }
     s->data[++s->top] = data;

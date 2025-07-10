@@ -18,6 +18,7 @@ Node* createNode(int data)
 }
 void printfList(Node* head)
 {
+
     if(head==NULL) return;
 
     Node* temp=head;
