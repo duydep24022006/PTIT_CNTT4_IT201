@@ -66,6 +66,6 @@ int main()
     Queue* queue = createQueue(number);
     enQueue(queue, number);
     displayQueue(queue);
-    free(queue);
+    free(queue->value);
     return 0;
 }

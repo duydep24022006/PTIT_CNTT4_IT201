@@ -55,6 +55,6 @@ int main()
     }
     if (isIncreasing(queue)) printf("true\n");
     else printf("false\n");
-    free(queue);
+    free(queue->value);
     return 0;
 }

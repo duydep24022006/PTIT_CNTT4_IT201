@@ -57,7 +57,7 @@ int main()
     enQueue(queue, 3);
 
     displayQueue( queue);
-    free(queue);
+    free(queue->value);
 
     return 0;
 }

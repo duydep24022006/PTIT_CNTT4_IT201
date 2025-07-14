@@ -63,7 +63,7 @@ int main()
     printf("\n");
     printf("truong hop 2\n");
     printfQueue(queue);
-    free(queue);
+    free(queue->value);
 
     return 0;
 }

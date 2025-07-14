@@ -104,5 +104,6 @@ int main(){
             default:
         }
     }while(choice!=4);
+    free(queue.queue);
     return 0;
 }
