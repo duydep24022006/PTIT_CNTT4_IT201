@@ -24,7 +24,6 @@ void insertAthead(Node** head,int value){
     Node* newNode=createNode((value));
     newNode->next=*head;
     *head=newNode;
-
     }
 void freeList(Node* head) {
     Node* temp;
