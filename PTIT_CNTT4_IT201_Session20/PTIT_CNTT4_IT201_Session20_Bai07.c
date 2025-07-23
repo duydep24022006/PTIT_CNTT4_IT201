@@ -8,6 +8,13 @@ typedef struct Node
     struct Node* right;
 }Node;
 
+typedef struct Queue
+{
+    Node** data;
+    int front;
+    int rear;
+    int capacity;
+}Queue;
 Node * createNode(int data)
 {
     Node* newNode = (Node*)malloc(sizeof(Node));
@@ -17,8 +24,38 @@ Node * createNode(int data)
     newNode->right = NULL;
     return newNode;
 }
+Queue* createQueue(int capacity)
+{
+    Queue* newQueue = (Queue*)malloc(sizeof(Queue));
+    if (newQueue == NULL) return NULL;
+    newQueue->data = NULL;
+    newQueue->front = 0;
+    newQueue->rear = 0;
+    newQueue->capacity = capacity;
+    return newQueue;
+}
+Node* deleteTreeNode(Node* root, int key)
+{
+    Queue* queue = createQueue(100);
+    enQueue(queue,root);
 
+    Node* target=NULL;
+    Node* lastNode=NULL;
+    Node* lastParent=NULL;
+    while (queue->rear != queue->front)
+    {
+        Node* currentNode = deQueue(queue);
+        if (currentNode->data == key)
+        {
+            target = currentNode;
+        }
+        if (currentNode->left != NULL)
+        {
+            enQueue();
+        }
+    }
 
+}
 
 
 

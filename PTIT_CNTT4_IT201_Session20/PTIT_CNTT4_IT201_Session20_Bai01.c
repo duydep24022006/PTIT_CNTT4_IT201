@@ -59,7 +59,6 @@ void postorder(Node* root)
 }
 
 
-
 int main(){
     Node* root = NULL;
     int n;
